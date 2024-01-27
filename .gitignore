@@ -23,3 +23,8 @@
 
 # broccoli-debug
 /DEBUG/
+
+# IDE
+/.idea/
+/.vscode/
+/.history/
