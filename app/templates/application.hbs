@@ -1,7 +1,70 @@
 {{page-title "EmberAppConcurrencyDemo"}}
 
-{{! The following component displays Ember's default welcome message. }}
-<WelcomePage />
-{{! Feel free to remove this! }}
+<div
+  style="
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  "
+>
+
+  <h1>ember-concurrency benefits</h1> 
+
+  <ol>
+    <li>
+      <h3>Convenient way to wrap promises, exposing their state, value, error</h3>
+
+      <p>Example:</p>
+
+      <Component-1/>
+    </li>
+
+    <li>
+      <h3>Concenient API to restart a promise without boilerplate code</h3>
+    </li>
+
+    <li>
+      <h3>Use a single task (wrapped promise) from multiple entities like components, avoiding unnecessary parallel calls</h3>
+
+      <p>Here's a copy of the previous example, and you can see that they share the same task:</p>
+
+      <Component-2/>
+    </li>
+
+    <li>
+      <h3>Cancel a promise, preventing `.then` callbacks from firing</h3>
+
+      <p>This task makes a request, waits for 3 seconds and makes an `alert(response)`.</p>
+      <p>If you cancel it while it's running, the alert will not happen.</p>
+      
+      <Cancellation/>
+    </li>
+
+    <li>
+      <h3>Retains previous iteration of promise, so that you can display the last successful value while the promise is loading or has errored</h3>
+
+      <Error/>
+    </li>
+
+    <li>
+      <h3>Automatically tangle a promise with a parent entity’s (e. g. component’s) lifecycle</h3>
+
+      <ul>
+        <li>
+          When a component is destroyed, the promise is automatically cancelled and destroyed:
+
+          <ul>
+            <li>`.then` hooks won’t fire, avoiding interaction with now non-existent component</li>
+            <li>no memory leaks</li>
+          </ul>
+        </li>
+
+        <li>Tasks can be nested, and the lifecycle of a child task is tangled with the lifecycle of the parent task. Cancelling the parent cleans up the child task.</li>
+      </ul>
+
+      <Parent/>
+    </li>
+  </ol>
+</div>
 
 {{outlet}}
